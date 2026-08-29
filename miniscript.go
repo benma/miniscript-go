@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/btcsuite/btcd/btcutil"
-	"github.com/btcsuite/btcd/txscript"
-	"github.com/btcsuite/btcd/wire"
+	"github.com/btcsuite/btcd/address/v2"
+	"github.com/btcsuite/btcd/txscript/v2"
+	"github.com/btcsuite/btcd/wire/v2"
 )
 
 const (
@@ -1167,7 +1167,7 @@ func buildScript(node *AST, b *txscript.ScriptBuilder, collapseVerify bool) erro
 		}
 		b.AddOp(txscript.OP_DUP)
 		b.AddOp(txscript.OP_HASH160)
-		b.AddData(btcutil.Hash160(key))
+		b.AddData(address.Hash160(key))
 		b.AddOp(txscript.OP_EQUALVERIFY)
 	case f_older:
 		b.AddInt64(int64(node.args[0].num))
